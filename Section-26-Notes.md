@@ -113,6 +113,22 @@ Section 26: Meta-Programming: Symbols, Iterators, Generators, Reflect API & Prox
   - Subtle differences from the Object API
   
 - [ ] 473. The Proxy API and a First "Trap" 9min
+  - Tweak objects
+  - Create "traps" for object operations
+  - Step in and execute code
+  
+  ```javascript
+  
+  const courseHandler = {
+    get(obj, propertyName) {
+      console.log(propertyName);
+      return obj[propertyName];
+    }
+  };
+  
+  const pCourse = new Proxy(course, courseHandler); // title (property) printed, as well as the value
+  ```
+  
 - [ ] 474. Working with Proxy Traps 3min
 - [ ] 475. Wrap Up 2min
 - [ ] 476. Useful Resources & Links 1min
