@@ -94,6 +94,24 @@ Section 26: Meta-Programming: Symbols, Iterators, Generators, Reflect API & Prox
 
 - [ ] 471. Generators Summary & Built-in Iterables Examples 3min
 - [ ] 472. The Reflect API 7min
+  - API to control objects
+  
+  ```javascript
+  const course = {
+    title: "JavaScript the Complete Guide";
+  };
+  
+  Reflect.setPrototypeOf(course, {
+    toString() {
+      return this.title;
+    }
+  });
+  
+  Reflect.defineProperty(course, 'price', { /* writeable, etc */ });
+  ```
+  
+  - Subtle differences from the Object API
+  
 - [ ] 473. The Proxy API and a First "Trap" 9min
 - [ ] 474. Working with Proxy Traps 3min
 - [ ] 475. Wrap Up 2min
