@@ -40,7 +40,58 @@ Section 26: Meta-Programming: Symbols, Iterators, Generators, Reflect API & Prox
   ```
   
 - [ ] 469. Understanding Iterators 6min
+
+  ```javascript
+  const company = {
+    curEmployee: 0,
+    employees: ['Max', 'Manu', 'Anna'];
+    next() { // The next() function makes this into a loop-able object
+      if (this.curEmployee >= this.employee.length) {
+        return { value: this.curEmployee, done: true };
+      }
+      const returnValue = { 
+        value: this.employees[this.curEmployee], 
+        done: false 
+      };
+      this.curEmployee++;
+      return returnValue;
+    }
+  }
+  ```
+
 - [ ] 470. Generators & Iterable Objects 1 1min
+
+  ```javascript
+  const company = {
+    curEmployee: 0,
+    employees: ['Max', 'Manu', 'Anna'];
+    next() { // The next() function makes this into a loop-able object
+      if (this.curEmployee >= this.employee.length) {
+        return { value: this.curEmployee, done: true };
+      }
+      const returnValue = { 
+        value: this.employees[this.curEmployee], 
+        done: false 
+      };
+      this.curEmployee++;
+      return returnValue;
+    },
+    // Create an "iteration generator" here
+    [Symbol.iterator]: function* employeeGenerator() {
+      
+      let employee = company.next();
+      yield employee.value;
+      while(!employee.done) {
+        employee = company.next();
+      }
+    }
+  }
+
+  for (const employee of company) {
+    console.log(employee);
+  }
+  ```
+
 - [ ] 471. Generators Summary & Built-in Iterables Examples 3min
 - [ ] 472. The Reflect API 7min
 - [ ] 473. The Proxy API and a First "Trap" 9min
